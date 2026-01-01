@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Matrices Lab</title>
+<link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<header>
+  <h1>🧮 Virtual Matrices Lab</h1>
+  <p>Learn Matrices Step by Step with Theory, Examples & Quizzes</p>
+</header>
+<nav>
+  <button onclick="showSection('rank')">Rank of Matrix</button>
+  <button onclick="showSection('system')">System of Linear Equations</button>
+  <button onclick="showSection('eigen')">Eigenvalues & Eigenvectors</button>
+  <button onclick="showSection('kirchhoff')">Kirchhoff Laws</button>
+</nav>
+<!-- ================= RANK ================= -->
+<section id="rank" class="content active">
+  <h2>Rank of a Matrix</h2>
+  <p><b>Theory:</b> The rank of a matrix is the maximum number of linearly independent rows or columns in the matrix. It represents the amount of independent information present in the matrix.
+
+To find the rank, the matrix is usually converted into row echelon form or reduced row echelon form using elementary row operations. The number of non-zero rows obtained after reduction gives the rank of the matrix.
+
+For a matrix of order 
+𝑚
+×
+𝑛
+m×n, the rank is always less than or equal to 
+min
+⁡
+(
+𝑚
+,
+𝑛
+)
+min(m,n). A zero matrix has rank zero. If a square matrix has a non-zero determinant, then its rank is equal to its order.
+
+The concept of rank is important in solving systems of linear equations. It helps determine whether a system is consistent or inconsistent and whether it has a unique solution or infinitely many solutions.</p>
+<p><b>Methods to find rank</b>Methods to Find Rank of a Matrix<br>
+<b>1. Row Reduction Method</b>
+
+Convert the matrix into row echelon form or reduced row echelon form using elementary row operations.
+
+Count the number of non-zero rows.
+
+The number of non-zero rows is the rank.<br>
+
+<b>2. Using Determinants (for Square Matrices)</b>
+
+If the determinant of a matrix is non-zero, then the rank equals the order of the matrix.
+
+If the determinant is zero, check the determinants of smaller submatrices.
+
+The highest order of a non-zero minor gives the rank.</p>
+  <h3>Solved Examples</h3>
+  <div class="example">
+    <b>Example 1:</b> Find rank of A = 
+    <span class="matrix">[1 2]<br> [3 6]</span><br>
+    <b>Solution:</b><br>
+    Perform row operation: R2 → R2 − 3R1<br>
+    <span class="matrix">[1 2]<br>[0 0]</span><br>
+    Non-zero rows = 1 → Rank(A) = 1
+  </div>
+
+  <div class="example">
+    <b>Example 2:</b> Find rank of A = 
+    <span class="matrix">[1 2 3]<br>[2 4 6]<br>[1 1 1]</span><br>
+    R2 → R2 − 2R1 → <br><span class="matrix">[1 2 3]<br>[0 0 0]<br>[1 1 1]</span><br>
+    R3 → R3 − R1 →<br> <span class="matrix">[1 2 3]<br> [0 0 0] <br>[0 -1 -2]</span><br>
+    Non-zero rows = 2 → Rank(A) = 2
+  </div>
+
+  <div class="example">
+    <b>Example 3:</b> Find rank using determinant A =<br> <span class="matrix">[1 2]<br> [3 4]</span><br>
+    det(A) = 1*4 − 2*3 = −2 ≠ 0 → Rank(A) = 2
+  </div>
+
+  <div class="example">
+    <b>Example 4:</b> A =<br><span class="matrix">[1 2]<br>[2 4]<br>[3 6]</span> <br>
+    R2 → R2 − 2R1, R3 → R3 − 3R1 → <br>
+    <span class="matrix">[1 2]<br>[0 0]<br>[0 0]</span><br>
+    Rank(A) = 1
+  </div>
+
+  <button class="quiz-btn" onclick="startQuiz('rank')">Start Rank Quiz</button>
+  <p id="rankStatus" class="status"></p>
+</section>
+
+<!-- ================= SYSTEM ================= -->
+<section id="system" class="content">
+  <h2>System of Linear Equations</h2>
+  <p><b>Theory:</b> A system of linear equations is a set of two or more linear equations involving the same variables. Each equation represents a straight line (or plane in higher dimensions), and the solution of the system is the set of values of variables that satisfy all equations simultaneously.
+
+A system can be represented in matrix form as:
+
+AX=B
+<br>
+where
+
+𝐴
+A is the coefficient matrix,<br>
+
+𝑋
+X is the variable matrix, and<br>
+
+𝐵
+B is the constant matrix.<br>
+
+The consistency of a system is determined using the Rouché–Capelli theorem:<br>
+
+1.If 
+
+
+<b>rank(A)=rank([A∣B])</b>, the system is consistent
+<br>
+2.If <b>
+rank
+(
+𝐴
+)
+≠
+rank
+(
+[
+𝐴
+∣
+𝐵
+]
+)
+,</b> the system is inconsistent.<br>
+
+If the system is consistent:
+<br>
+If <b>rank = number of variables</b> → unique solution<br>
+
+If <b>rank < number of variables</b> → infinitely many solutions</p>
+
+  <h3>Solved Examples</h3>
+  <div class="example">
+    <b>Example 1 (Unique Solution):</b><br>
+    x + y = 5<br>
+    x − y = 1<br>
+    Add equations: 2x=6 → x=3<br>
+    Substitute: 3 + y=5 → y=2<br>
+    Solution: x=3, y=2
+  </div>
+
+  <div class="example">
+    <b>Example 2 (No Solution):</b><br>
+    x + y = 2<br>
+    2x + 2y = 5<br>
+    Multiply first eq by 2: 2x + 2y = 4<br>
+    Contradiction → No solution
+  </div>
+
+  <div class="example">
+    <b>Example 3 (Infinite Solutions):</b><br>
+    x + y = 4<br>
+    2x + 2y = 8<br>
+    Second eq is multiple of first → infinitely many solutions
+  </div>
+
+  <div class="example">
+    <b>Example 4 (Three variables):</b><br>
+    x+y+z=6<br>
+    x+2y+3z=14<br>
+    2x+y+z=7<br>
+    Augmented matrix:<br>
+    [1 1 1 |6; 1 2 3 |14; 2 1 1 |7]<br>
+    R2→R2−R1, R3→R3−2R1 → [1 1 1 |6; 0 1 2 |8; 0 −1 −1 |−5]<br>
+    R3→R3+R2 → [1 1 1 |6; 0 1 2 |8; 0 0 1 |3]<br>
+    Back substitution: z=3, y=2, x=1
+  </div>
+
+  <button class="quiz-btn" onclick="startQuiz('system')">Start System Quiz</button>
+  <p id="systemStatus" class="status"></p>
+</section>
+
+<!-- ================= EIGEN ================= -->
+<section id="eigen" class="content">
+  <h2>Eigenvalues & Eigenvectors</h2>
+  <p><b>Theory:</b> For a square matrix 
+𝐴
+A, a non-zero vector 
+𝑣
+v is called an eigenvector of 
+𝐴
+A if multiplication by 
+𝐴
+A only scales the vector, not changes its direction. The scalar factor 
+𝜆
+λ is called the eigenvalue. <br>
+Mathematically:<br>
+Av=λv<br>
+where:
+
+𝐴
+A = square matrix<br>
+
+𝑣
+v = eigenvector (
+𝑣
+≠
+0)<br>
+λ = eigenvalue
+  <h3>Solved Examples</h3>
+  <div class="example">
+    <b>Example 1:</b> A=[2 0;0 3]<br>
+    Characteristic eq: det(A−λI)=0 → (2−λ)(3−λ)=0 → λ1=2, λ2=3<br>
+    Eigenvectors: λ=2 → v=[1 0], λ=3 → v=[0 1]
+  </div>
+
+  <div class="example">
+    <b>Example 2:</b> A=[1 1;1 1]<br>
+    det(A−λI)=λ(λ−2)=0 → λ1=0, λ2=2<br>
+    Eigenvectors: λ=0 → v=[1 −1], λ=2 → v=[1 1]
+  </div>
+
+  <div class="example">
+    <b>Example 3:</b> Diagonal A=[3 0 0;0 4 0;0 0 5]<br>
+    λ=3,4,5 → Eigenvectors along axes: v1=[1 0 0], v2=[0 1 0], v3=[0 0 1]
+  </div>
+
+  <div class="example">
+    <b>Example 4:</b> A=[0 1; −2 −3]<br>
+    det(A−λI)=λ²+3λ+2=0 → λ=−1,−2<br>
+    Eigenvectors: λ=−1 → v=[1 −1], λ=−2 → v=[1 −2]
+  </div>
+
+  <button class="quiz-btn" onclick="startQuiz('eigen')">Start Eigen Quiz</button>
+  <p id="eigenStatus" class="status"></p>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quiz" class="content">
+  <h2 id="quizTitle"></h2>
+  <form id="quizForm"></form>
+  <button onclick="submitQuiz()">Submit Quiz</button>
+  <div id="result"></div>
+</section>
+<section>
+  <section id="kirchhoff" class="content">
+  <div class="card">
+    <h2>Application of Matrices in Kirchhoff’s Laws</h2>
+
+    <p>
+      Kirchhoff’s laws are used to analyze electrical circuits.
+      Matrix methods help solve multiple loop or node equations
+      efficiently using linear algebra.
+    </p>
+
+    <h3>Theory</h3>
+    <p>
+      Kirchhoff’s Voltage Law (KVL) states that the algebraic sum of
+      voltages around any closed loop is zero.
+      Kirchhoff’s Current Law (KCL) states that the algebraic sum of
+      currents at a junction is zero.
+    </p>
+
+    <p>
+      When a circuit has multiple loops, each loop gives one linear
+      equation. These equations can be written in matrix form:
+    </p>
+
+    <p class="matrix">
+      A · X = B
+    </p>
+
+    <ul>
+      <li>A → coefficient matrix (resistances)</li>
+      <li>X → current matrix (unknown currents)</li>
+      <li>B → voltage matrix (sources)</li>
+    </ul>
+
+    <p>
+      Solving this matrix equation using row reduction gives the
+      values of currents in the circuit.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Solved Examples</h3>
+
+    <ol>
+      <li>
+        <b>Single Loop:</b><br>
+        R = 5Ω, V = 10V<br>
+        5I = 10 → I = 2A
+      </li>
+
+      <li>
+        <b>Two Loop Circuit:</b><br>
+        3I₁ + I₂ = 10<br>
+        I₁ + 2I₂ = 5<br>
+        Matrix form:
+        <div class="matrix">
+          [ 3  1 ] [ I₁ ] = [10]<br>
+          [ 1  2 ] [ I₂ ]   [5]
+        </div>
+        Solution: I₁ = 3A, I₂ = 1A
+      </li>
+
+      <li>
+        <b>Using KCL:</b><br>
+        I₁ + I₂ − I₃ = 0 → matrix equation
+      </li>
+
+      <li>
+        <b>Three-loop circuit:</b><br>
+        Solved using augmented matrix and row operations
+      </li>
+    </ol>
+  </div>
+
+  <button class="quiz-btn" onclick="startQuiz('kirchhoff')">
+    Start Kirchhoff Quiz
+  </button>
+
+  <p id="kirchhoffStatus" class="status"></p>
+</section>
+
+</section>
+
+
+<script src="lab.js"></script>
+</body>
+</html>
